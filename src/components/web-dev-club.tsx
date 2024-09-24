@@ -1,53 +1,12 @@
 "use client";
 
-import { useState } from 'react'
+
 import { motion } from 'framer-motion'
 import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Checkbox } from "@/components/ui/checkbox"
-import Link from 'next/link'
 
 export function WebDevClubComponent() {
-  const [formData, setFormData] = useState<{
-    name: string;
-    phoneNumber: string;
-    grade: string;
-    timeSlots: string[];
-  }>({
-    name: '',
-    phoneNumber: '',
-    grade: '',
-    timeSlots: []
-  });
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target
-    setFormData(prevState => ({
-      ...prevState,
-      [name]: value
-    }))
-  }
 
-  const handlePhoneNumberChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value } = e.target
-    const phoneNumber = value
-      .replace(/\D/g, '')
-      .replace(/^(\d{3})(\d{4})(\d{3})$/, '+7 $1 $2 $3')
-    setFormData(prevState => ({
-      ...prevState,
-      phoneNumber
-    }))
-  }
-
-  const handleTimeSlotChange = (timeSlot: string) => {
-    setFormData(prevState => {
-      const updatedTimeSlots = prevState.timeSlots.includes(timeSlot)
-        ? prevState.timeSlots.filter(slot => slot !== timeSlot)
-        : [...prevState.timeSlots, timeSlot].slice(0, 2)
-      return { ...prevState, timeSlots: updatedTimeSlots }
-    })
-  }
 
   return (
     <div className="min-h-screen flex flex-col font-sans">
@@ -122,67 +81,14 @@ export function WebDevClubComponent() {
       {/* Registration Section */}
       <section id="register" className="py-20">
         <div className="container mx-auto px-4 max-w-md">
-          <h2 className="text-3xl font-bold mb-8 text-center">Register for the Club</h2>
+          <h2 className="text-3xl font-bold mb-8 text-center">Register</h2>
           <form className="space-y-6">
-            <div>
-              <Label htmlFor="name">Name</Label>
-              <Input
-                id="name"
-                name="name"
-                type="text"
-                required
-                value={formData.name}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <Label htmlFor="phoneNumber">Phone Number</Label>
-              <Input
-                id="phoneNumber"
-                name="phoneNumber"
-                type="tel"
-                required
-                placeholder="+7 xxx xxxx xxx"
-                value={formData.phoneNumber}
-                onChange={handlePhoneNumberChange}
-                maxLength={15}
-              />
-            </div>
-            <div>
-              <Label htmlFor="grade">Grade</Label>
-              <Input
-                id="grade"
-                name="grade"
-                type="number"
-                min="7"
-                max="10"
-                required
-                value={formData.grade}
-                onChange={handleInputChange}
-              />
-            </div>
-            <div>
-              <Label>Preferred Meeting Times (Choose up to 2)</Label>
-              <div className="mt-2 space-y-2">
-                {['Monday', 'Tuesday', 'Wednesday', 'Thursday'].map((day) => (
-                  <div key={day.toLowerCase()} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={day.toLowerCase()}
-                      checked={formData.timeSlots.includes(day.toLowerCase())}
-                      onCheckedChange={() => handleTimeSlotChange(day.toLowerCase())}
-                      disabled={formData.timeSlots.length >= 2 && !formData.timeSlots.includes(day.toLowerCase())}
-                    />
-                    <Label htmlFor={day.toLowerCase()}>{day} after school</Label>
-                  </div>
-                ))}
-              </div>
-            </div>
             <Button
               type="button"
               className="w-full"
               onClick={() => window.location.href = 'https://forms.gle/wybwfqzHsd1C3fUQA'}
             >
-              Submit Registration
+              Apply now
             </Button>
           </form>
         </div>
@@ -192,7 +98,7 @@ export function WebDevClubComponent() {
       <footer className="bg-gray-800 text-white py-8">
         <div className="container mx-auto px-4 flex justify-center items-center">
           <div>
-            <Link href="/contact" className="hover:text-blue-300">Contact Us</Link>
+            telegram = @bnr_khan
           </div>
         </div>
       </footer>
